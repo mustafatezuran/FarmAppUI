@@ -1,0 +1,24 @@
+<div class="col-md-6 alert alert-danger" *ngIf="error">
+    {{error}}
+</div>
+
+<div class="col-md-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="input-group">
+          <input #name placeholder="Animal name" type="text" class="form-control">
+          <button class="btn btn-outline-primary btn-lg" (click)="addAnimal(name)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div *ngIf="animals.length>0; else no_record">
+    <animal *ngFor="let item of animals" [name]="item.name" (refreshParent)="getAnimals()"></animal>
+</div>
+<ng-template #no_record>
+    <div class="col-md-6 alert alert-warning">
+        No Record
+    </div>
+</ng-template>
+
